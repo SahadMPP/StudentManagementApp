@@ -6,9 +6,9 @@ import 'package:flutter_application_2/model/model_student.dart';
 import 'package:flutter_application_2/screens/student_deatiles.dart';
 import 'package:flutter_application_2/student_provider.dart/list_note.dart';
 import 'package:flutter_application_2/widgets/appbar_title.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_application_2/functions/list_screen.dart';
 
 class AddtoList extends StatelessWidget {
   const AddtoList({super.key});
@@ -120,44 +120,5 @@ class AddtoList extends StatelessWidget {
         },
       ),
     );
-  }
-
-  listDismissFun({
-    required data,
-    required onPressedYes,
-    required context,
-    required onPressedNo,
-  }) {
-    Get.defaultDialog(
-        title: "Are you sure?",
-        middleText: 'Sure to remove this student',
-        titleStyle: GoogleFonts.roboto(
-          color: Colors.black,
-        ),
-        middleTextStyle: GoogleFonts.roboto(
-            color: Colors.black, fontWeight: FontWeight.w600),
-        backgroundColor: Colors.white,
-        actions: [
-          TextButton(
-            onPressed: onPressedYes,
-            child: Text(
-              'Yes',
-              style: GoogleFonts.roboto(
-                  color: Colors.black,
-                  fontSize: 18,
-                  fontWeight: FontWeight.w400),
-            ),
-          ),
-          TextButton(
-            onPressed: onPressedNo,
-            child: Text(
-              'No',
-              style: GoogleFonts.roboto(
-                  color: Colors.black,
-                  fontSize: 18,
-                  fontWeight: FontWeight.w400),
-            ),
-          ),
-        ]);
   }
 }

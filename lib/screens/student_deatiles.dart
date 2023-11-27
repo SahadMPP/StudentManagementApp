@@ -8,22 +8,17 @@ import 'package:flutter_application_2/widgets/appbar_title.dart';
 import 'package:flutter_application_2/widgets/detail_screen_card.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class ProfileScreen extends StatefulWidget {
+class ProfileScreen extends StatelessWidget {
   final int index;
   const ProfileScreen(this.index, {super.key});
 
-  @override
-  State<ProfileScreen> createState() => _ProfileScreenState();
-}
-
-class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder<List<StudentModel>>(
       valueListenable: studentvalueLisener,
       builder: (BuildContext context, List<StudentModel> studentList,
           Widget? child) {
-        final data = studentList[widget.index];
+        final data = studentList[index];
         final base64Image = data.profileImage;
         final imageBytes = base64.decode(base64Image!);
         return Scaffold(
@@ -64,7 +59,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => AddStudent(
                             checkEdit: true,
-                            index: widget.index,
+                            index: index,
                           ),
                         ));
                       },
