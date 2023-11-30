@@ -13,6 +13,5 @@ AppBar appBar(String title) {
       ),
     ),
     centerTitle: true,
-    backgroundColor: Colors.black,
   );
 }

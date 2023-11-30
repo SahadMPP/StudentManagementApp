@@ -5,7 +5,6 @@ class TextFiledStu extends StatelessWidget {
   final TextEditingController? controller;
   final String validatorText;
   final IconData prifixIcons;
-
   const TextFiledStu({
     super.key,
     required this.hintText,
@@ -13,6 +12,7 @@ class TextFiledStu extends StatelessWidget {
     required this.validatorText,
     required this.prifixIcons,
   });
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -26,12 +26,12 @@ class TextFiledStu extends StatelessWidget {
             letterSpacing: .5,
           ),
           prefixIcon: Icon(prifixIcons, size: 28),
-          prefixIconColor: const Color.fromARGB(255, 46, 46, 46),
           contentPadding: const EdgeInsets.all(10),
           hintText: hintText,
         ),
+        autovalidateMode: AutovalidateMode.onUserInteraction,
         validator: (value) {
-          if (value == null || value.isEmpty) {
+          if (value!.isEmpty) {
             return validatorText;
           } else {
             return null;
