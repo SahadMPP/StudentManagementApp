@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/db/function.dart';
 import 'package:flutter_application_2/model/model_student.dart';

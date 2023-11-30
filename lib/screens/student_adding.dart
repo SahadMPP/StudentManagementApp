@@ -7,9 +7,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
 class AddStudent extends StatelessWidget {
-  final bool checkEdit;
   final int index;
-  const AddStudent({super.key, required this.checkEdit, required this.index});
+  const AddStudent({super.key, required this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -22,19 +21,17 @@ class AddStudent extends StatelessWidget {
 
     final addListProvider = Provider.of<AddAndUpdate>(context);
 
-    if (checkEdit == true) {
-      addListProvider.givingValue(index);
-      userNameInput = addListProvider.userNameInput;
-      userAgeInput = addListProvider.userAgeInput;
-      userGardianInput = addListProvider.userGardianInput;
-      userLocationInput = addListProvider.userLocationInput;
-    }
+    // if (checkEdit == true) {
+    //   addListProvider.givingValue(index);
+    //   userNameInput = addListProvider.userNameInput;
+    //   userAgeInput = addListProvider.userAgeInput;
+    //   userGardianInput = addListProvider.userGardianInput;
+    //   userLocationInput = addListProvider.userLocationInput;
+    // }
 
     return Scaffold(
       backgroundColor: Colors.black,
-      appBar: checkEdit == true
-          ? appBar('EDIT STUDENT INFO')
-          : appBar('ADD STUDENT'),
+      appBar: appBar('ADD STUDENT'),
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         child: Form(
@@ -85,28 +82,28 @@ class AddStudent extends StatelessWidget {
                 child: ElevatedButton(
                   onPressed: () {
                     if (formKey.currentState!.validate()) {
-                      if (checkEdit == true) {
-                        addListProvider.upDateStudent(
-                          userNameInput: userNameInput,
-                          userAgeInput: userAgeInput,
-                          userGardianInput: userGardianInput,
-                          userLocationInput: userLocationInput,
-                          imageFile: addListProvider.imageFile,
-                          addListProvider: addListProvider,
-                          id: index,
-                        );
-                        Navigator.of(context).pop();
-                      } else {
-                        addListProvider.addStudenceOnButtenclick(
-                          userNameInput: userNameInput,
-                          userAgeInput: userAgeInput,
-                          userGardianInput: userGardianInput,
-                          userLocationInput: userLocationInput,
-                          imageFile: addListProvider.imageFile,
-                          addListProvider: addListProvider,
-                        );
-                        Navigator.of(context).pop();
-                      }
+                      // if (checkEdit == true) {
+                      //   addListProvider.upDateStudent(
+                      //     userNameInput: userNameInput,
+                      //     userAgeInput: userAgeInput,
+                      //     userGardianInput: userGardianInput,
+                      //     userLocationInput: userLocationInput,
+                      //     imageFile: addListProvider.imageFile,
+                      //     addListProvider: addListProvider,
+                      //     id: index,
+                      //   );
+                      //   Navigator.of(context).pop();
+                      // } else {
+                      //   addListProvider.addStudenceOnButtenclick(
+                      //     userNameInput: userNameInput,
+                      //     userAgeInput: userAgeInput,
+                      //     userGardianInput: userGardianInput,
+                      //     userLocationInput: userLocationInput,
+                      //     imageFile: addListProvider.imageFile,
+                      //     addListProvider: addListProvider,
+                      //   );
+                      //   Navigator.of(context).pop();
+                      // }
                     }
                   },
                   style: const ButtonStyle(
@@ -115,9 +112,7 @@ class AddStudent extends StatelessWidget {
                       Color.fromARGB(255, 211, 20, 7),
                     ),
                   ),
-                  child: checkEdit == true
-                      ? const Text('UPDATE')
-                      : const Text('ADD STUDENT'),
+                  child: const Text('ADD STUDENT'),
                 ),
               ),
             ],

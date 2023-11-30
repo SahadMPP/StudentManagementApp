@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/model/model_student.dart';
-import 'package:flutter_application_2/screens/spalsh_screen.dart';
+import 'package:flutter_application_2/screens/update_stu.dart';
 import 'package:flutter_application_2/student_provider.dart/add_update.dart';
 import 'package:flutter_application_2/student_provider.dart/list_note.dart';
 import 'package:get/get.dart';
@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData.dark(),
-        home: const SpashScreen(),
+        home: const UpdateScreen(),
       ),
     );
   }

@@ -13,7 +13,7 @@ class _NavigatorHomeState extends State<NavigatorHome> {
   int selectedIndex = 0;
   List<Widget> pages = [
     const AddtoList(),
-    const AddStudent(checkEdit: false, index: 1000),
+    const AddStudent(index: 1000),
   ];
   @override
   Widget build(BuildContext context) {

@@ -1,9 +1,8 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/db/function.dart';
 import 'package:flutter_application_2/model/model_student.dart';
-import 'package:flutter_application_2/screens/student_adding.dart';
+import 'package:flutter_application_2/screens/update_stu.dart';
 import 'package:flutter_application_2/widgets/appbar_title.dart';
 import 'package:flutter_application_2/widgets/detail_screen_card.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -57,11 +56,7 @@ class ProfileScreen extends StatelessWidget {
                     child: ElevatedButton(
                       onPressed: () {
                         Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => AddStudent(
-                            checkEdit: true,
-                            index: index,
-                          ),
-                        ));
+                            builder: (context) => const UpdateScreen()));
                       },
                       style: const ButtonStyle(
                           shape: MaterialStatePropertyAll(
