@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/student_provider.dart/list_note.dart';
+import 'package:flutter_application_2/student_provider.dart/add_students.dart';
 import 'package:provider/provider.dart';
 
 class SpashScreen extends StatelessWidget {
@@ -7,7 +7,7 @@ class SpashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final listProvider = Provider.of<ListNotifier>(context);
+    final listProvider = Provider.of<AddStuProvider>(context);
     listProvider.loggin(context);
     return Scaffold(
       backgroundColor: Colors.black,

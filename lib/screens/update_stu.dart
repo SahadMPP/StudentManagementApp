@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_2/model/model_student.dart';
 import 'package:flutter_application_2/student_provider.dart/add_students.dart';
 import 'package:flutter_application_2/widgets/appbar_title.dart';
+import 'package:flutter_application_2/widgets/button.dart';
 import 'package:flutter_application_2/widgets/textfiled.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class UpdateScreen extends StatelessWidget {
@@ -101,10 +101,7 @@ class UpdateScreen extends StatelessWidget {
                 validatorText: 'Please enter location',
               ),
               const SizedBox(height: 30),
-              SizedBox(
-                width: 350,
-                height: 50,
-                child: ElevatedButton(
+              BuildBotton(
                   onPressed: () async {
                     final bytes =
                         await addProvider.selectedImage!.readAsBytes();
@@ -123,20 +120,7 @@ class UpdateScreen extends StatelessWidget {
                       Navigator.of(context).pop();
                     }
                   },
-                  style: const ButtonStyle(
-                    shape: MaterialStatePropertyAll(BeveledRectangleBorder()),
-                    backgroundColor: MaterialStatePropertyAll(
-                      Color.fromARGB(255, 211, 20, 7),
-                    ),
-                  ),
-                  child: Text(
-                    'UPDATE',
-                    style: GoogleFonts.roboto(
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-              ),
+                  text: 'UPDATE')
             ],
           ),
         ),

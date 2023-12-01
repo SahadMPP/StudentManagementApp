@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/db/function.dart';
 import 'package:flutter_application_2/model/model_student.dart';
+import 'package:flutter_application_2/widgets/bottom_navigator_home.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -62,6 +63,11 @@ class AddStuProvider extends ChangeNotifier {
   delete(index) {
     listOfStudents.removeAt(index);
     students.deleteValue(index);
+    Get.showSnackbar(const GetSnackBar(
+      message: 'Student is removed',
+      duration: Duration(seconds: 2),
+      backgroundColor: Colors.grey,
+    ));
     notifyListeners();
   }
 
@@ -76,6 +82,19 @@ class AddStuProvider extends ChangeNotifier {
 
   updateStudent(id, StudentModel value) {
     listOfStudents[id] = value;
+    notifyListeners();
+  }
+
+  Future loggin(context) async {
+    await Future.delayed(const Duration(seconds: 3));
+    Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(
+          builder: (context) => const NavigatorHome(),
+        ),
+        (route) => false);
+  }
+
+  getAllStudents() {
     notifyListeners();
   }
 }

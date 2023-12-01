@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/student_provider.dart/add_students.dart';
 import 'package:flutter_application_2/widgets/appbar_title.dart';
+import 'package:flutter_application_2/widgets/button.dart';
 import 'package:flutter_application_2/widgets/textfiled.dart';
 import 'package:provider/provider.dart';
 
@@ -86,25 +87,14 @@ class AddStudent extends StatelessWidget {
                     validatorText: 'Please enter location',
                   ),
                   const SizedBox(height: 30),
-                  SizedBox(
-                    width: 350,
-                    height: 50,
-                    child: ElevatedButton(
+                  BuildBotton(
+                      formKey: formKey,
                       onPressed: () {
                         if (formKey.currentState!.validate()) {
                           addStudent.addtoList();
                         }
                       },
-                      style: const ButtonStyle(
-                        shape:
-                            MaterialStatePropertyAll(BeveledRectangleBorder()),
-                        backgroundColor: MaterialStatePropertyAll(
-                          Color.fromARGB(255, 211, 20, 7),
-                        ),
-                      ),
-                      child: const Text('ADD STUDENT'),
-                    ),
-                  ),
+                      text: 'ADD STUDENT'),
                 ],
               );
             },

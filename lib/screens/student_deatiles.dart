@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_2/screens/update_stu.dart';
 import 'package:flutter_application_2/student_provider.dart/add_students.dart';
 import 'package:flutter_application_2/widgets/appbar_title.dart';
+import 'package:flutter_application_2/widgets/button.dart';
 import 'package:flutter_application_2/widgets/detail_screen_card.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -48,31 +48,14 @@ class ProfileScreen extends StatelessWidget {
                   const SizedBox(height: 15),
                   getprofile('Location', data.location, Icons.location_city),
                   const SizedBox(height: 30),
-                  SizedBox(
-                    height: 50,
-                    width: double.infinity,
-                    child: ElevatedButton(
+                  BuildBotton(
                       onPressed: () {
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => UpdateScreen(
                                   index: index,
                                 )));
                       },
-                      style: const ButtonStyle(
-                          shape: MaterialStatePropertyAll(
-                              BeveledRectangleBorder()),
-                          backgroundColor: MaterialStatePropertyAll(
-                              Color.fromARGB(255, 176, 36, 26))),
-                      child: Text(
-                        'Edit',
-                        style: GoogleFonts.roboto(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600,
-                          letterSpacing: 1,
-                        ),
-                      ),
-                    ),
-                  ),
+                      text: 'Edit')
                 ],
               );
             },

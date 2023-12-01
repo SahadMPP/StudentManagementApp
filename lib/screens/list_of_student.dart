@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/db/function.dart';
 import 'package:flutter_application_2/screens/student_deatiles.dart';
 import 'package:flutter_application_2/student_provider.dart/add_students.dart';
 import 'package:flutter_application_2/widgets/appbar_title.dart';
@@ -53,7 +52,7 @@ class AddtoList extends StatelessWidget {
                         },
                         onPressedNo: () {
                           Navigator.of(context).pop();
-                          students.getAllstudents();
+                          studentProvider.getAllStudents();
                         },
                         context: context);
                   },

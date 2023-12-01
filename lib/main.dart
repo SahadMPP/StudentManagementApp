@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_2/model/model_student.dart';
 import 'package:flutter_application_2/screens/spalsh_screen.dart';
 import 'package:flutter_application_2/student_provider.dart/add_students.dart';
-import 'package:flutter_application_2/student_provider.dart/add_update.dart';
-import 'package:flutter_application_2/student_provider.dart/list_note.dart';
-import 'package:flutter_application_2/student_provider.dart/update_provider.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
@@ -24,9 +21,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider<ListNotifier>(create: (_) => ListNotifier()),
-        ChangeNotifierProvider<AddAndUpdate>(create: (_) => AddAndUpdate()),
-        ChangeNotifierProvider<UpdateProvider>(create: (_) => UpdateProvider()),
         ChangeNotifierProvider<AddStuProvider>(create: (_) => AddStuProvider())
       ],
       child: GetMaterialApp(
