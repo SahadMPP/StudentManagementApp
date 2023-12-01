@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 class ListNotifier extends ChangeNotifier {
   deleteValue(data) {
     if (data.id != null) {
-      students.deleteValue(data.id!, data);
+      students.deleteValue(data.id!);
       Get.showSnackbar(const GetSnackBar(
         message: 'Student is removed',
         duration: Duration(seconds: 2),

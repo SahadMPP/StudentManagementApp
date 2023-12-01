@@ -1,28 +1,31 @@
-import 'dart:developer';
+import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/student_provider.dart/update_provider.dart';
+import 'package:flutter_application_2/model/model_student.dart';
+import 'package:flutter_application_2/student_provider.dart/add_students.dart';
 import 'package:flutter_application_2/widgets/appbar_title.dart';
 import 'package:flutter_application_2/widgets/textfiled.dart';
-import 'package:flutter_test/flutter_test.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class UpdateScreen extends StatefulWidget {
-  const UpdateScreen({super.key});
-
-  @override
-  State<UpdateScreen> createState() => _UpdateScreenState();
-}
-
-class _UpdateScreenState extends State<UpdateScreen> {
-  bool isValid = false;
+class UpdateScreen extends StatelessWidget {
+  final int index;
+  UpdateScreen({super.key, required this.index});
   final formKey = GlobalKey<FormState>();
-  final userNameInput = TextEditingController();
-  String word = '';
 
   @override
   Widget build(BuildContext context) {
+    final addProvider = Provider.of<AddStuProvider>(context);
+    addProvider.forUpdateGivingVal(index);
+    final data = addProvider.listOfStudents[index];
+    TextEditingController userNameInput = addProvider.nameEditInput;
+    TextEditingController ageNameInput = addProvider.ageEditInput;
+    TextEditingController gadianNameInput = addProvider.gadianEditInput;
+    TextEditingController locationNameInput = addProvider.locationEditInput;
+
+    final imageBytes1 = base64.decode(data.profileImage);
+
     return Scaffold(
       appBar: appBar('Edit Detiles'),
       backgroundColor: Colors.black,
@@ -33,10 +36,41 @@ class _UpdateScreenState extends State<UpdateScreen> {
           child: Column(
             children: [
               const SizedBox(height: 50),
-              const Center(
-                child: CircleAvatar(
-                    radius: 60,
-                    backgroundImage: AssetImage('asset/filepicker.png')),
+              Center(
+                child: SizedBox(
+                  height: 150,
+                  width: 150,
+                  child: Stack(
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(65),
+                        child: CircleAvatar(
+                          radius: 60,
+                          child: addProvider.selectedImage == null
+                              ? Image.memory(imageBytes1)
+                              : Image.file(
+                                  File(addProvider.selectedImage!.path),
+                                ),
+                        ),
+                      ),
+                      Positioned(
+                        top: 80,
+                        left: 80,
+                        child: CircleAvatar(
+                          backgroundColor: Colors.white,
+                          child: IconButton(
+                              onPressed: () {
+                                addProvider.imagecollect();
+                              },
+                              icon: const Icon(
+                                Icons.camera_alt,
+                                color: Colors.black,
+                              )),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ),
               const SizedBox(height: 50),
               TextFiledStu(
@@ -46,19 +80,22 @@ class _UpdateScreenState extends State<UpdateScreen> {
                 prifixIcons: Icons.person,
               ),
               const SizedBox(height: 20),
-              const TextFiledStu(
+              TextFiledStu(
+                controller: ageNameInput,
                 hintText: 'Age',
                 validatorText: 'Please enter age',
                 prifixIcons: Icons.align_horizontal_center_outlined,
               ),
               const SizedBox(height: 20),
-              const TextFiledStu(
+              TextFiledStu(
+                controller: gadianNameInput,
                 hintText: 'Guardian Name',
                 validatorText: 'Please enter guardian name',
                 prifixIcons: Icons.person_2,
               ),
               const SizedBox(height: 20),
-              const TextFiledStu(
+              TextFiledStu(
+                controller: locationNameInput,
                 hintText: 'Location',
                 prifixIcons: Icons.location_on_outlined,
                 validatorText: 'Please enter location',
@@ -68,8 +105,23 @@ class _UpdateScreenState extends State<UpdateScreen> {
                 width: 350,
                 height: 50,
                 child: ElevatedButton(
-                  onPressed: () {
-                    if (formKey.currentState!.validate()) {}
+                  onPressed: () async {
+                    final bytes =
+                        await addProvider.selectedImage!.readAsBytes();
+                    final String imagebytes = base64Encode(bytes);
+                    final stu = StudentModel(
+                        name: userNameInput.text,
+                        age: ageNameInput.text,
+                        gardian: gadianNameInput.text,
+                        location: locationNameInput.text,
+                        profileImage: addProvider.selectedImage == null
+                            ? data.profileImage
+                            : imagebytes);
+                    if (formKey.currentState!.validate()) {
+                      addProvider.updateStudent(index, stu);
+                      // ignore: use_build_context_synchronously
+                      Navigator.of(context).pop();
+                    }
                   },
                   style: const ButtonStyle(
                     shape: MaterialStatePropertyAll(BeveledRectangleBorder()),

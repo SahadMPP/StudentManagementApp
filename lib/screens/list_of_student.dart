@@ -1,9 +1,8 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/db/function.dart';
-import 'package:flutter_application_2/model/model_student.dart';
 import 'package:flutter_application_2/screens/student_deatiles.dart';
-import 'package:flutter_application_2/student_provider.dart/list_note.dart';
+import 'package:flutter_application_2/student_provider.dart/add_students.dart';
 import 'package:flutter_application_2/widgets/appbar_title.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -14,23 +13,19 @@ class AddtoList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final listProvider = Provider.of<ListNotifier>(context);
-    students.getAllstudents();
     return Scaffold(
       appBar: appBar('LIST OF STUDENT'),
       backgroundColor: Colors.black,
-      body: ValueListenableBuilder(
-        valueListenable: studentvalueLisener,
-        builder:
-            (BuildContext ctx, List<StudentModel> studentList, Widget? child) {
-          return Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: ListView.builder(
+      body: Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: Consumer<AddStuProvider>(
+          builder: (context, studentProvider, child) {
+            return ListView.builder(
               itemBuilder: (ctx, index) {
                 GlobalKey<FormState> formkey2 = GlobalKey();
-                final data = studentList[index];
-                final base64Image = data.profileImage;
-                final imageBytes = base64.decode(base64Image!);
+                final data = studentProvider.listOfStudents[index];
+                final String bytes = data.profileImage;
+                final imageBytes = base64.decode(bytes);
                 return Dismissible(
                   key: formkey2,
                   direction: DismissDirection.endToStart,
@@ -52,7 +47,8 @@ class AddtoList extends StatelessWidget {
                     listDismissFun(
                         data: data,
                         onPressedYes: () {
-                          listProvider.deleteValue(data);
+                          // listProvider.deleteValue(data);
+                          studentProvider.delete(index);
                           Navigator.of(context).pop();
                         },
                         onPressedNo: () {
@@ -72,17 +68,7 @@ class AddtoList extends StatelessWidget {
                       child: ListTile(
                         leading: ClipRRect(
                           borderRadius: BorderRadius.circular(30),
-                          child: SizedBox(
-                            width: 55,
-                            height: 55,
-                            child: Image(
-                              fit: BoxFit.fill,
-                              image: data.profileImage == null
-                                  ? const AssetImage('asset/filepicker.png')
-                                      as ImageProvider<Object>
-                                  : MemoryImage(imageBytes),
-                            ),
-                          ),
+                          child: Image(image: MemoryImage(imageBytes)),
                         ),
                         title: Text(
                           data.name,
@@ -113,10 +99,10 @@ class AddtoList extends StatelessWidget {
                   ),
                 );
               },
-              itemCount: studentList.length,
-            ),
-          );
-        },
+              itemCount: studentProvider.listOfStudents.length,
+            );
+          },
+        ),
       ),
     );
   }

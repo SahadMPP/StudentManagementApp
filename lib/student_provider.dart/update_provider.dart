@@ -1,16 +1,19 @@
-// import 'dart:developer';
+import 'dart:io';
 
-// import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
-// class UpdateProvider extends ChangeNotifier {
-//   final userNameInput = TextEditingController();
-//   bool isValid = false;
-//   textverification(value) {
-//     log('working provider');
-//     if (value == null || value.isEmpty) {
-//       return 'working';
-//     } else {
-//       return 'null';
-//     }
-//   }
-// }
+class UpdateProvider extends ChangeNotifier {
+  File? seletedImage;
+
+  Future imagecollect() async {
+    final pikedImage =
+        await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (pikedImage == null) {
+      return;
+    }
+
+    seletedImage = File(pikedImage.path);
+    notifyListeners();
+  }
+}

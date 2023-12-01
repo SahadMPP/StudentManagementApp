@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/model/model_student.dart';
-import 'package:flutter_application_2/screens/update_stu.dart';
+import 'package:flutter_application_2/screens/spalsh_screen.dart';
+import 'package:flutter_application_2/student_provider.dart/add_students.dart';
 import 'package:flutter_application_2/student_provider.dart/add_update.dart';
 import 'package:flutter_application_2/student_provider.dart/list_note.dart';
 import 'package:flutter_application_2/student_provider.dart/update_provider.dart';
@@ -25,16 +26,13 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider<ListNotifier>(create: (_) => ListNotifier()),
         ChangeNotifierProvider<AddAndUpdate>(create: (_) => AddAndUpdate()),
-        // ChangeNotifierProvider<UpdateProvider>(create: (_) => UpdateProvider()),
+        ChangeNotifierProvider<UpdateProvider>(create: (_) => UpdateProvider()),
+        ChangeNotifierProvider<AddStuProvider>(create: (_) => AddStuProvider())
       ],
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          appBarTheme: const AppBarTheme(color: Colors.black),
-          iconTheme:
-              const IconThemeData(color: Color.fromARGB(255, 46, 46, 46)),
-        ),
-        home: const UpdateScreen(),
+        theme: ThemeData.dark(),
+        home: const SpashScreen(),
       ),
     );
   }

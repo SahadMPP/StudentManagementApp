@@ -25,7 +25,7 @@ class Student extends ChangeNotifier {
     studentvalueLisener.notifyListeners();
   }
 
-  Future<void> deleteValue(int id, StudentModel value) async {
+  Future<void> deleteValue(int id) async {
     final studentDB = await Hive.openBox<StudentModel>('student_db');
     studentDB.delete(id);
     getAllstudents();

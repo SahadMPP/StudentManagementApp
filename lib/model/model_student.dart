@@ -14,7 +14,7 @@ class StudentModel {
   @HiveField(4)
   final String location;
   @HiveField(5)
-  final String? profileImage;
+  final String profileImage;
 
   StudentModel(
       {required this.name,
