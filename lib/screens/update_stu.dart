@@ -3,10 +3,11 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/model/model_student.dart';
-import 'package:flutter_application_2/student_provider.dart/add_students.dart';
+import 'package:flutter_application_2/student_provider/add_students.dart';
 import 'package:flutter_application_2/widgets/appbar_title.dart';
 import 'package:flutter_application_2/widgets/button.dart';
 import 'package:flutter_application_2/widgets/textfiled.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 class UpdateScreen extends StatelessWidget {
@@ -43,16 +44,20 @@ class UpdateScreen extends StatelessWidget {
                   child: Stack(
                     children: [
                       ClipRRect(
-                        borderRadius: BorderRadius.circular(65),
-                        child: CircleAvatar(
-                          radius: 60,
-                          child: addProvider.selectedImage == null
-                              ? Image.memory(imageBytes1)
-                              : Image.file(
-                                  File(addProvider.selectedImage!.path),
-                                ),
-                        ),
-                      ),
+                          borderRadius: BorderRadius.circular(100),
+                          child: SizedBox(
+                            height: 120,
+                            width: 120,
+                            child: addProvider.selectedImage == null
+                                ? Image.memory(
+                                    imageBytes1,
+                                    fit: BoxFit.cover,
+                                  )
+                                : Image.file(
+                                    File(addProvider.selectedImage!.path),
+                                    fit: BoxFit.cover,
+                                  ),
+                          )),
                       Positioned(
                         top: 80,
                         left: 80,
@@ -116,9 +121,8 @@ class UpdateScreen extends StatelessWidget {
                             : imagebytes);
                     if (formKey.currentState!.validate()) {
                       addProvider.updateStudent(index, stu);
-                      // ignore: use_build_context_synchronously
-                      Navigator.of(context).pop();
                     }
+                    Get.back();
                   },
                   text: 'UPDATE')
             ],

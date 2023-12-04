@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/student_provider.dart/add_students.dart';
+import 'package:flutter_application_2/student_provider/add_students.dart';
 import 'package:provider/provider.dart';
 
 class SpashScreen extends StatelessWidget {

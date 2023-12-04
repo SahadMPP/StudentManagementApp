@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/student_provider.dart/add_students.dart';
+import 'package:flutter_application_2/student_provider/add_students.dart';
 import 'package:flutter_application_2/widgets/appbar_title.dart';
 import 'package:flutter_application_2/widgets/button.dart';
 import 'package:flutter_application_2/widgets/textfiled.dart';
@@ -28,19 +28,20 @@ class AddStudent extends StatelessWidget {
                   Stack(
                     children: [
                       ClipRRect(
-                        borderRadius: BorderRadius.circular(100),
-                        child: CircleAvatar(
-                          radius: 65,
-                          child: addStudent.selectedImage == null
-                              ? Image.asset(
-                                  'asset/filepicker.png',
-                                  fit: BoxFit.contain,
-                                )
-                              : Image.file(
-                                  File(addStudent.selectedImage!.path),
-                                ),
-                        ),
-                      ),
+                          borderRadius: BorderRadius.circular(200),
+                          child: SizedBox(
+                            height: 130,
+                            width: 130,
+                            child: addStudent.selectedImage == null
+                                ? Image.asset(
+                                    'asset/filepicker.png',
+                                  )
+                                : Image.file(
+                                    File(addStudent.selectedImage!.path),
+                                    filterQuality: FilterQuality.high,
+                                    fit: BoxFit.cover,
+                                  ),
+                          )),
                       Positioned(
                         left: 80,
                         top: 90,
@@ -86,9 +87,8 @@ class AddStudent extends StatelessWidget {
                     prifixIcons: Icons.location_on_outlined,
                     validatorText: 'Please enter location',
                   ),
-                  const SizedBox(height: 30),
+                  const SizedBox(height: 50),
                   BuildBotton(
-                      formKey: formKey,
                       onPressed: () {
                         if (formKey.currentState!.validate()) {
                           addStudent.addtoList();

@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/screens/update_stu.dart';
-import 'package:flutter_application_2/student_provider.dart/add_students.dart';
+import 'package:flutter_application_2/student_provider/add_students.dart';
 import 'package:flutter_application_2/widgets/appbar_title.dart';
 import 'package:flutter_application_2/widgets/button.dart';
 import 'package:flutter_application_2/widgets/detail_screen_card.dart';

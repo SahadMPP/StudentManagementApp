@@ -6,12 +6,9 @@ class BuildBotton extends StatelessWidget {
 
   const BuildBotton({
     super.key,
-    this.formKey,
     required this.onPressed,
     required this.text,
   });
-
-  final GlobalKey<FormState>? formKey;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +16,7 @@ class BuildBotton extends StatelessWidget {
       width: 350,
       height: 50,
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: onPressed,
         style: const ButtonStyle(
           shape: MaterialStatePropertyAll(BeveledRectangleBorder()),
           backgroundColor: MaterialStatePropertyAll(

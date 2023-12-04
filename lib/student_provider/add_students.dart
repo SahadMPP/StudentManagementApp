@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -28,6 +29,7 @@ class AddStuProvider extends ChangeNotifier {
   }
 
   Future addtoList() async {
+    log('working adding');
     if (selectedImage == null) {
       Get.showSnackbar(const GetSnackBar(
         message: 'Please add your image',
@@ -51,7 +53,11 @@ class AddStuProvider extends ChangeNotifier {
     listOfStudents.add(stu);
 
     students.addStudent(stu);
-
+    Get.showSnackbar(const GetSnackBar(
+      message: 'Student is Added',
+      duration: Duration(seconds: 2),
+      backgroundColor: Colors.grey,
+    ));
     nameEditInput.text = '';
     ageEditInput.text = '';
     gadianEditInput.text = '';

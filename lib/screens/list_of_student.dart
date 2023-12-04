@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/screens/student_deatiles.dart';
-import 'package:flutter_application_2/student_provider.dart/add_students.dart';
+import 'package:flutter_application_2/student_provider/add_students.dart';
 import 'package:flutter_application_2/widgets/appbar_title.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -63,11 +63,18 @@ class AddtoList extends StatelessWidget {
                         color: const Color.fromARGB(255, 23, 23, 23),
                         borderRadius: BorderRadius.circular(15),
                       ),
-                      padding: const EdgeInsets.all(12),
+                      padding: const EdgeInsets.all(10),
                       child: ListTile(
                         leading: ClipRRect(
-                          borderRadius: BorderRadius.circular(30),
-                          child: Image(image: MemoryImage(imageBytes)),
+                          borderRadius: BorderRadius.circular(100),
+                          child: SizedBox(
+                            height: 65,
+                            width: 60,
+                            child: Image(
+                              image: MemoryImage(imageBytes),
+                              fit: BoxFit.fill,
+                            ),
+                          ),
                         ),
                         title: Text(
                           data.name,
