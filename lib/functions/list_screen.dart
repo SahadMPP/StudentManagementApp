@@ -9,6 +9,7 @@ listDismissFun({
   required onPressedNo,
 }) {
   Get.defaultDialog(
+      barrierDismissible: false,
       title: "Are you sure?",
       middleText: 'Sure to remove this student',
       titleStyle: GoogleFonts.roboto(

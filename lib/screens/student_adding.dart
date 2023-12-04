@@ -91,7 +91,7 @@ class AddStudent extends StatelessWidget {
                   BuildBotton(
                       onPressed: () {
                         if (formKey.currentState!.validate()) {
-                          addStudent.addtoList();
+                          addStudent.addtoList(context);
                         }
                       },
                       text: 'ADD STUDENT'),

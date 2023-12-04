@@ -46,7 +46,6 @@ class AddtoList extends StatelessWidget {
                     listDismissFun(
                         data: data,
                         onPressedYes: () {
-                          // listProvider.deleteValue(data);
                           studentProvider.delete(index);
                           Navigator.of(context).pop();
                         },

@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/db/function.dart';
 import 'package:flutter_application_2/model/model_student.dart';
+import 'package:flutter_application_2/screens/list_of_student.dart';
 import 'package:flutter_application_2/widgets/bottom_navigator_home.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -28,7 +29,7 @@ class AddStuProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future addtoList() async {
+  Future addtoList(context) async {
     log('working adding');
     if (selectedImage == null) {
       Get.showSnackbar(const GetSnackBar(
@@ -63,6 +64,8 @@ class AddStuProvider extends ChangeNotifier {
     gadianEditInput.text = '';
     locationEditInput.text = '';
     selectedImage = null;
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => const AddtoList()));
     notifyListeners();
   }
 
@@ -72,7 +75,7 @@ class AddStuProvider extends ChangeNotifier {
     Get.showSnackbar(const GetSnackBar(
       message: 'Student is removed',
       duration: Duration(seconds: 2),
-      backgroundColor: Colors.grey,
+      backgroundColor: Colors.red,
     ));
     notifyListeners();
   }
@@ -88,6 +91,11 @@ class AddStuProvider extends ChangeNotifier {
 
   updateStudent(id, StudentModel value) {
     listOfStudents[id] = value;
+    Get.showSnackbar(const GetSnackBar(
+      message: 'Student is Updated',
+      duration: Duration(seconds: 2),
+      backgroundColor: Colors.grey,
+    ));
     notifyListeners();
   }
 

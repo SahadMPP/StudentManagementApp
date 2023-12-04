@@ -7,7 +7,6 @@ import 'package:flutter_application_2/student_provider/add_students.dart';
 import 'package:flutter_application_2/widgets/appbar_title.dart';
 import 'package:flutter_application_2/widgets/button.dart';
 import 'package:flutter_application_2/widgets/textfiled.dart';
-import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 class UpdateScreen extends StatelessWidget {
@@ -120,9 +119,10 @@ class UpdateScreen extends StatelessWidget {
                             ? data.profileImage
                             : imagebytes);
                     if (formKey.currentState!.validate()) {
-                      addProvider.updateStudent(index, stu);
+                      await addProvider.updateStudent(index, stu);
+                      // ignore: use_build_context_synchronously
+                      Navigator.of(context).pop();
                     }
-                    Get.back();
                   },
                   text: 'UPDATE')
             ],
