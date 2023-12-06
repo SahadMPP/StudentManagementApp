@@ -111,4 +111,21 @@ class AddStuProvider extends ChangeNotifier {
   getAllStudents() {
     notifyListeners();
   }
+
+  List<StudentModel> foundUser = [];
+  List<StudentModel> result = [];
+
+  runFilter(String enteredKeyword) {
+    if (enteredKeyword.isEmpty) {
+      result = listOfStudents;
+    } else {
+      List<StudentModel> filteredList = listOfStudents
+          .where((user) =>
+              user.name.toLowerCase().contains(enteredKeyword.toLowerCase()))
+          .toList();
+      result = filteredList;
+    }
+    foundUser = result;
+    notifyListeners();
+  }
 }
